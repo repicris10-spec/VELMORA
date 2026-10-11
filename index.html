@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tienda VELMORA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap">
+<style>
+  /* Layout: barra fija + hero + catálogo filtrable en grilla + franjas de confianza y marca */
+  :root{
+    --arena:#0E0D0B; --hueso:#17150F; --panel:#1D1A13; --linea:#363021;
+    --plata:#A7ACB2; --plata-clara:#C9CDD1; --rosa:#CBA24E;
+    --vino:#D9CBB0; --dorado:#CBA24E; --dorado-claro:#E6CE95;
+    --carbon:#F2ECE0; --carbon-tenue:#A79F90;
+    --display:"Playfair Display",Georgia,serif;
+    --sans:"Montserrat",system-ui,sans-serif;
+    --bar:64px; color-scheme:dark;
+  }
+  /* Diseño comprometido en negro-luxe: un solo tema, igual en claro y oscuro */
+
+  *{box-sizing:border-box}
+  body{background:var(--arena);color:var(--carbon);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wordmark{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.34em;line-height:1}
+  .gem{width:26px;height:auto;color:var(--dorado);flex:none}
+
+  /* preview note */
+  .note{background:var(--panel);border-bottom:1px solid var(--linea);color:var(--carbon-tenue);font-size:.74rem;letter-spacing:.04em;text-align:center;padding:7px 16px}
+
+  /* top bar */
+  .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--arena) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+  .bar-in{max-width:1080px;margin:0 auto;height:var(--bar);padding-inline:20px;display:flex;align-items:center;gap:16px}
+  .bar .wordmark{font-size:1.25rem;letter-spacing:.3em;margin-left:.3em}
+  .bar nav{margin-left:auto;display:flex;gap:22px}
+  .bar nav a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--carbon-tenue);text-decoration:none}
+  .bar nav a:hover{color:var(--carbon)}
+  .wa{display:inline-flex;align-items:center;gap:8px;background:var(--dorado);color:#211B0A;font-family:var(--sans);font-weight:500;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:10px 16px;border-radius:999px;border:0;cursor:pointer}
+  .wa:hover{filter:brightness(1.05)}
+  .wa svg{width:15px;height:15px;fill:currentColor}
+  @media(max-width:720px){.bar nav{display:none}}
+
+  /* hero */
+  .hero{max-width:1080px;margin:0 auto;padding:clamp(48px,8vw,88px) 20px clamp(32px,5vw,56px);text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
+  .logo-plate{background:#FBF7EF;border-radius:14px;padding:22px 30px;box-shadow:0 14px 48px rgba(0,0,0,.5);max-width:330px;width:100%;margin-bottom:6px}
+  .logo-plate img{width:100%;height:auto;display:block}
+  .hero .eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--dorado);margin:0}
+  .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(2.4rem,6vw,4rem);line-height:1.04;margin:0;max-width:16ch;text-wrap:balance}
+  .hero p.slogan{font-family:var(--display);font-style:italic;font-size:clamp(1.15rem,3vw,1.5rem);color:var(--vino);margin:0;max-width:34ch}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--carbon);color:var(--carbon);background:transparent;border-radius:999px;padding:11px 22px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+  .btn-ghost:hover{background:var(--carbon);color:var(--arena)}
+
+  /* trust strip */
+  .trust{border-block:1px solid var(--linea);background:var(--hueso)}
+  .trust-in{max-width:1080px;margin:0 auto;padding:18px 20px;display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center}
+  .trust span{font-size:.76rem;letter-spacing:.08em;color:var(--carbon-tenue);display:inline-flex;align-items:center;gap:8px}
+  .trust b{color:var(--dorado);font-weight:500}
+  .trust .pl{color:var(--plata)}
+
+  /* catalog */
+  main{max-width:1080px;margin:0 auto;padding:clamp(40px,6vw,72px) 20px}
+  .sec-head{text-align:center;margin-bottom:28px}
+  .sec-head .eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rosa);margin:0}
+  .sec-head h2{font-family:var(--display);font-weight:500;font-size:clamp(1.8rem,4vw,2.4rem);margin:.15em 0 0}
+  .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
+  .chip{font-family:var(--sans);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--carbon-tenue);background:transparent;border:1px solid var(--linea);border-radius:999px;padding:9px 18px;cursor:pointer}
+  .chip[aria-pressed="true"]{color:var(--arena);background:var(--carbon);border-color:var(--carbon)}
+  .chip:focus-visible,.wa:focus-visible,.btn-ghost:focus-visible,.card-btn:focus-visible{outline:2px solid var(--dorado);outline-offset:3px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:22px}
+  .card{background:var(--hueso);border:1px solid var(--linea);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+  .ph{aspect-ratio:4/5;position:relative;overflow:hidden;background:var(--panel)}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .ph.plata{background:linear-gradient(150deg,#EFF1F2,#D3D7DB 60%,#BFC4C9)}
+  .ph.oro{background:linear-gradient(150deg,#F7EFD6,#E9D38F 60%,#D7B65A)}
+  :root[data-theme="dark"] .ph.plata,:root:not([data-theme="light"]) .ph.plata{background:linear-gradient(150deg,#2C2F34,#3A3E45 60%,#474C54)}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ph.oro{background:linear-gradient(150deg,#332B13,#4A3D18 60%,#5C4C1C)}}
+  :root[data-theme="dark"] .ph.oro{background:linear-gradient(150deg,#332B13,#4A3D18 60%,#5C4C1C)}
+  .ph .gem{width:38px;opacity:.85}
+  .ph.plata .gem{color:#7C828A}
+  .ph.oro .gem{color:#B08E2E}
+  :root[data-theme="dark"] .ph.plata .gem{color:#AEB4BB}
+  :root[data-theme="dark"] .ph.oro .gem{color:#E3C878}
+  .ph small{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(0,0,0,.4)}
+  :root[data-theme="dark"] .ph small{color:rgba(255,255,255,.4)}
+  .mat{position:absolute;top:12px;left:12px;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;background:var(--hueso);color:var(--carbon);padding:5px 10px;border-radius:999px;border:1px solid var(--linea)}
+
+  .card-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .card-body h3{font-family:var(--display);font-weight:500;font-size:1.3rem;line-height:1.15;margin:0;color:var(--carbon)}
+  .card-body .desc{font-size:.8rem;color:var(--carbon-tenue);margin:0}
+  .price-row{margin-top:auto;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .price{font-family:var(--sans);font-weight:500;font-size:1.05rem;color:var(--carbon);font-variant-numeric:tabular-nums}
+  .card-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid var(--dorado);color:var(--dorado);border-radius:999px;padding:9px 14px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;white-space:nowrap}
+  .card-btn:hover{background:var(--dorado);color:#211B0A}
+  .card-btn svg{width:13px;height:13px;fill:currentColor}
+
+  /* brand strip */
+  .brand{background:var(--hueso);border-top:1px solid var(--linea)}
+  .brand-in{max-width:760px;margin:0 auto;padding:clamp(48px,7vw,80px) 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+  .brand .gem{width:40px}
+  .brand p{font-family:var(--display);font-style:italic;font-size:clamp(1.3rem,3.3vw,1.7rem);color:var(--carbon);margin:0;max-width:40ch;text-wrap:balance}
+  .brand .sign{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--plata)}
+
+  .materiales{max-width:1080px;margin:0 auto;padding:clamp(8px,2vw,20px) 20px clamp(44px,6vw,68px)}
+  .mat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .mat-card{background:var(--hueso);border:1px solid var(--linea);border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+  .mat-card.oro{border-top:3px solid var(--dorado)}
+  .mat-card.plata{border-top:3px solid var(--plata)}
+  .mat-tag{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--carbon-tenue)}
+  .mat-card.oro .mat-tag{color:var(--dorado)}
+  .mat-card.plata .mat-tag{color:var(--plata)}
+  .mat-card h3{font-family:var(--display);font-weight:500;font-size:1.5rem;margin:0;color:var(--carbon)}
+  .mat-card p{font-size:.92rem;color:var(--carbon-tenue);margin:0;line-height:1.6}
+  footer{background:var(--arena);border-top:1px solid var(--linea)}
+  .foot-in{max-width:1080px;margin:0 auto;padding:40px 20px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+  .foot-in .wordmark{font-size:1.1rem;color:var(--carbon)}
+  .foot-links{display:flex;flex-direction:column;gap:6px;font-size:.82rem;color:var(--carbon-tenue)}
+  .foot-links a{text-decoration:none}
+  .foot-links a:hover{color:var(--carbon)}
+  .copy{width:100%;text-align:center;font-size:.72rem;color:var(--carbon-tenue);letter-spacing:.04em;padding-top:8px;border-top:1px solid var(--linea)}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>html,body{margin:0}*{box-sizing:border-box}img{max-width:100%}</style>
+</head>
+<body>
+<div class="note">Colección de lanzamiento VELMORA ✨ Pedidos por WhatsApp al 314 806 2428 · Pulseras y más plata, muy pronto.</div>
+
+<header class="bar">
+  <div class="bar-in">
+    <svg class="gem" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5c.5 5.4 1.1 6 11.5 11.5C13.1 17.5 12.5 18.1 12 23.5 11.5 18.1 10.9 17.5 .5 12 10.9 6.5 11.5 5.9 12 .5Z"/></svg>
+    <span class="wordmark">VELMORA</span>
+    <nav>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#plata-link" data-filter="plata">Plata</a>
+      <a href="#oro-link" data-filter="oro">Oro laminado</a>
+      <a href="#materiales">Materiales</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="wa" id="wa-top" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.521 5.26l-.999 3.648 3.967-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      Escríbenos
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="logo-plate"><img src="fotos/velmora_logo.jpg" alt="VELMORA · Fine Jewelry"></div>
+  <p class="eyebrow">Fine Jewelry · Neiva, Colombia</p>
+  <h1>Tu mundo. Tu esencia. Tu brillo.</h1>
+  <p class="slogan">Joyas para tus días especiales… y para los normales también.</p>
+  <div class="hero-cta">
+    <a class="btn-ghost" href="#catalogo">Ver catálogo</a>
+    <a class="wa" id="wa-hero" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.521 5.26l-.999 3.648 3.967-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      Pedir por WhatsApp
+    </a>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="trust-in">
+    <span class="pl">● <b class="pl">Plata 925</b> auténtica</span>
+    <span>● <b>Oro laminado 18k</b></span>
+    <span>● Envíos desde <b>Neiva</b> a todo el país</span>
+    <span>● Separa con el <b>50%</b></span>
+    <span>● Garantía de cambio</span>
+  </div>
+</div>
+
+<main id="catalogo">
+  <div class="sec-head">
+    <p class="eyebrow">Catálogo</p>
+    <h2>Nuestra colección</h2>
+  </div>
+  <div class="filters" role="group" aria-label="Filtrar por material">
+    <button class="chip" data-filter="all" aria-pressed="true">Todo</button>
+    <button class="chip" data-filter="plata" aria-pressed="false">Plata 925</button>
+    <button class="chip" data-filter="oro" aria-pressed="false">Oro laminado</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<section class="materiales" id="materiales">
+  <div class="sec-head">
+    <p class="eyebrow">Materiales</p>
+    <h2>Oro laminado y plata, ¿qué es qué?</h2>
+  </div>
+  <div class="mat-grid">
+    <article class="mat-card oro">
+      <span class="mat-tag">Oro laminado 18K</span>
+      <h3>Brillo de oro, precio amable</h3>
+      <p>Es una base de metal recubierta con una capa de oro de 18 quilates. Luce y se siente como oro, a una fracción del precio. Cuidándolo lejos de perfumes, cloro y sudor directo, conserva su color por mucho tiempo. Ideal para brillar todos los días sin gastar de más.</p>
+    </article>
+    <article class="mat-card plata">
+      <span class="mat-tag">Plata ley 925</span>
+      <h3>Plata real, para siempre</h3>
+      <p>Plata esterlina: 92.5% de plata pura, con su sello 925. Es plata auténtica, hipoalergénica y duradera — no es fantasía. Si con el tiempo se opaca, recupera su brillo con un paño suave. Una joya que te acompaña toda la vida.</p>
+    </article>
+  </div>
+</section>
+
+<section class="brand" id="contacto">
+  <div class="brand-in">
+    <svg class="gem" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5c.5 5.4 1.1 6 11.5 11.5C13.1 17.5 12.5 18.1 12 23.5 11.5 18.1 10.9 17.5 .5 12 10.9 6.5 11.5 5.9 12 .5Z"/></svg>
+    <p>No esperes la ocasión. Tú ya eres la ocasión.</p>
+    <span class="sign">VELMORA · Neiva, Huila</span>
+    <a class="wa" id="wa-brand" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.521 5.26l-.999 3.648 3.967-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      Escríbenos por WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <span class="wordmark">VELMORA</span>
+    <div class="foot-links">
+      <a id="wa-foot" href="#" target="_blank" rel="noopener">WhatsApp: <span id="wa-num">+57 300 000 0000</span></a>
+      <a href="#">Instagram: @velmora.joyas</a>
+      <span>Neiva, Huila · Envíos a todo Colombia</span>
+    </div>
+  </div>
+  <div class="copy">© 2026 VELMORA · Plata &amp; Oro laminado</div>
+</footer>
+
+<script>
+  // ==== CONFIG — reemplazar con datos reales ====
+  var PHONE = "573148062428"; // número de WhatsApp (formato internacional, sin + ni espacios)
+
+  var PRODUCTS = [
+    {n:"Cadena Barbada", d:"Eslabón mariner de 60 cm en oro laminado 18K. El clásico que nunca falla: brillo parejo y caída perfecta.", m:"oro", tag:"Oro laminado 18K", p:63000, img:"fotos/cad_barbada.jpg"},
+    {n:"Cadena de Bolas", d:"60 cm de esferas pulidas en oro laminado 18K. Movimiento y luz que se roban las miradas.", m:"oro", tag:"Oro laminado 18K", p:87000, img:"fotos/cad_bolas.jpg"},
+    {n:"Cadena Torsal", d:"Tejido trenzado de 60 cm en oro laminado 18K. Delicada pero con presencia, sola o con tu dije.", m:"oro", tag:"Oro laminado 18K", p:49500, img:"fotos/cad_torsal.jpg"},
+    {n:"Cadena Veneciana", d:"Eslabón cuadrado de 50 cm en oro laminado 18K. Líneas limpias y modernas que combinan con todo.", m:"oro", tag:"Oro laminado 18K", p:36000, img:"fotos/cad_veneciana.jpg"},
+    {n:"Candonga Eslabón", d:"Argolla tipo cadena en oro laminado 18K. Textura actual que va de la oficina a la noche.", m:"oro", tag:"Oro laminado 18K", p:65000, img:"fotos/can_eslabon.jpg"},
+    {n:"Candonga Lágrima", d:"Forma de gota en oro laminado 18K con destellos de circonia. Femenina y luminosa.", m:"oro", tag:"Oro laminado 18K", p:68000, img:"fotos/can_lagrima.jpg"},
+    {n:"Candonga Pavé", d:"Barra de circonias sobre oro laminado 18K. Brillo fino para iluminar tu rostro cada día.", m:"oro", tag:"Oro laminado 18K", p:25500, img:"fotos/can_pave.jpg"},
+    {n:"Candonga Trenzada", d:"Aro texturizado en oro laminado 18K, cómodo y liviano. El básico elegante que usarás sin parar.", m:"oro", tag:"Oro laminado 18K", p:82000, img:"fotos/can_oval.jpg"},
+    {n:"Anillo Esmeralda Solitario", d:"Esmeralda natural engastada en plata ley 925 · talla 7. Toda la luz verde de Colombia en tu mano.", m:"plata", tag:"Plata 925 + Esmeralda", p:470000, img:"fotos/esm_94.jpg"},
+    {n:"Anillo Esmeralda Halo", d:"Esmeralda rodeada de circonias en plata ley 925 · talla 8. Un brillo que abraza el verde.", m:"plata", tag:"Plata 925 + Esmeralda", p:320000, img:"fotos/esm_64.jpg"},
+    {n:"Anillo Esmeralda Pavé", d:"Esmeralda con banda de circonias en plata ley 925 · talla 8. Elegancia que se nota sin gritar.", m:"plata", tag:"Plata 925 + Esmeralda", p:420000, img:"fotos/esm_84.jpg"},
+    {n:"Anillo Esmeralda Clásico", d:"Esmeralda en plata ley 925 · talla 8. Una joya para marcar un momento que no se repite.", m:"plata", tag:"Plata 925 + Esmeralda", p:375000, img:"fotos/esm_75.jpg"},
+    {n:"Juego XV Años", d:"Collar + aretes en plata ley 925 con detalle dorado del 15. El regalo para una fecha inolvidable.", m:"plata", tag:"Juego XV · Plata 925", p:160000, img:"fotos/juego_xv.jpg"}
+  ];
+  // ===============================================
+
+  var GEM='<svg class="gem" viewBox="0 0 48 28" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.12"/><path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/><line x1="13" y1="9" x2="13" y2="19"/><line x1="35" y1="9" x2="35" y2="19"/><line x1="3" y1="14" x2="45" y2="14"/></g></svg>';
+  var WAICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.521 5.26l-.999 3.648 3.967-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>';
+
+  function cop(n){return "$"+n.toLocaleString("es-CO");}
+  function waLink(msg){return "https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg);}
+  function prettyPhone(p){ // 573001234567 -> +57 300 123 4567
+    if(p.length===12) return "+"+p.slice(0,2)+" "+p.slice(2,5)+" "+p.slice(5,8)+" "+p.slice(8);
+    return "+"+p;
+  }
+
+  // enlaces generales de WhatsApp
+  var generalMsg="Hola VELMORA ✨ quiero información sobre sus joyas en plata y oro laminado.";
+  ["wa-top","wa-hero","wa-brand","wa-foot"].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.href=waLink(generalMsg);
+  });
+  var num=document.getElementById("wa-num"); if(num) num.textContent=prettyPhone(PHONE);
+
+  // render catálogo
+  var grid=document.getElementById("grid");
+  function render(filter){
+    grid.innerHTML="";
+    PRODUCTS.forEach(function(pr){
+      if(filter!=="all" && pr.m!==filter) return;
+      var matLabel = pr.tag;
+      var msg="Hola VELMORA ✨ quiero pedir: "+pr.n+" ("+matLabel+") — "+cop(pr.p)+". ¿Está disponible?";
+      var card=document.createElement("div");
+      card.className="card";
+      card.innerHTML=
+        '<div class="ph"><img src="'+pr.img+'" alt="'+pr.n+'" loading="lazy"><span class="mat">'+matLabel+'</span></div>'+
+        '<div class="card-body">'+
+          '<h3>'+pr.n+'</h3>'+
+          '<p class="desc">'+pr.d+'</p>'+
+          '<div class="price-row">'+
+            '<span class="price">'+cop(pr.p)+'</span>'+
+            '<a class="card-btn" href="'+waLink(msg)+'" target="_blank" rel="noopener">'+WAICON+'Pedir</a>'+
+          '</div>'+
+        '</div>';
+      grid.appendChild(card);
+    });
+  }
+  render("all");
+
+  // filtros
+  var chips=document.querySelectorAll(".chip");
+  chips.forEach(function(c){
+    c.addEventListener("click",function(){
+      chips.forEach(function(x){x.setAttribute("aria-pressed","false");});
+      c.setAttribute("aria-pressed","true");
+      render(c.getAttribute("data-filter"));
+    });
+  });
+  // enlaces del nav que filtran
+  document.querySelectorAll('nav a[data-filter]').forEach(function(a){
+    a.addEventListener("click",function(e){
+      e.preventDefault();
+      var f=a.getAttribute("data-filter");
+      chips.forEach(function(x){x.setAttribute("aria-pressed", x.getAttribute("data-filter")===f ? "true":"false");});
+      render(f);
+      document.getElementById("catalogo").scrollIntoView({behavior:"smooth"});
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Voz VELMORA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+  /* Manual de voz: una columna editorial, tarjetas copiables agrupadas por uso */
+  :root{
+    --arena:#FAFAF8; --hueso:#FFFFFF; --panel:#F3F2EF; --linea:#E7E6E2;
+    --plata:#8C9299; --rosa:#C08D7F; --vino:#5A5E63;
+    --dorado:#C09A3C; --dorado-claro:#E3CD92;
+    --carbon:#26262A; --carbon-tenue:#6C6E73;
+    --display:"Cormorant Garamond",Georgia,serif;
+    --sans:"Jost","Century Gothic",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --arena:#141518; --hueso:#1E2023; --panel:#24262A; --linea:#34373C;
+    --plata:#C9CDD3; --rosa:#D4A99C; --vino:#AEB2B8;
+    --dorado:#E3C878; --dorado-claro:#F0DCA6;
+    --carbon:#F4F4F3; --carbon-tenue:#AFB2B7; color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --arena:#141518; --hueso:#1E2023; --panel:#24262A; --linea:#34373C;
+    --plata:#C9CDD3; --rosa:#D4A99C; --vino:#AEB2B8;
+    --dorado:#E3C878; --dorado-claro:#F0DCA6;
+    --carbon:#F4F4F3; --carbon-tenue:#AFB2B7; color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--arena);color:var(--carbon);font-family:var(--sans);font-weight:300;line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding-inline:22px;padding-block:clamp(40px,7vw,80px)}
+
+  header.top{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:12px}
+  .gem{width:40px;color:var(--dorado)}
+  .wordmark{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.3em;font-size:clamp(2rem,7vw,3rem);margin-left:.3em;line-height:1}
+  header.top .sub{font-family:var(--sans);font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dorado);margin:0}
+  .hr{display:flex;align-items:center;gap:14px;color:var(--linea);width:min(360px,70%);margin:6px auto 0}
+  .hr::before,.hr::after{content:"";flex:1;height:1px;background:currentColor}
+
+  section{margin-top:clamp(44px,7vw,72px)}
+  .eyebrow{font-family:var(--sans);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rosa);margin:0}
+  h2{font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,4vw,2.3rem);line-height:1.1;margin:.2em 0 .3em;text-wrap:balance}
+  .lead{font-family:var(--display);font-style:italic;font-size:1.12rem;color:var(--carbon-tenue);max-width:62ch;margin:0 0 20px}
+  h3.grp{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--carbon-tenue);margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--linea)}
+  h3.grp span{color:var(--dorado)}
+
+  /* expresiones */
+  .lex{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:8px}
+  .lex div{background:var(--panel);border-radius:6px;padding:14px 16px}
+  .lex b{font-family:var(--display);font-size:1.25rem;font-weight:500;color:var(--carbon);display:block}
+  .lex p{font-size:.84rem;color:var(--carbon-tenue);margin:4px 0 0}
+
+  /* reglas si/no */
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  @media(max-width:560px){.rules{grid-template-columns:1fr}}
+  .rule{border-left:2px solid var(--linea);padding:2px 0 2px 16px}
+  .rule.si{border-color:var(--dorado)} .rule.no{border-color:var(--plata)}
+  .rule h4{font-family:var(--sans);font-weight:500;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;margin:0 0 8px;color:var(--carbon)}
+  .rule ul{margin:0;padding-left:18px} .rule li{font-size:.92rem;color:var(--carbon-tenue);margin-bottom:6px}
+
+  /* tarjetas copiables */
+  .cards{display:flex;flex-direction:column;gap:10px}
+  .copybox{background:var(--hueso);border:1px solid var(--linea);border-radius:8px;padding:16px 16px 16px 18px;display:flex;gap:14px;align-items:flex-start;justify-content:space-between}
+  .copybox .txt{min-width:0}
+  .copybox .frase{font-family:var(--display);font-size:1.3rem;line-height:1.35;color:var(--carbon);margin:0}
+  .copybox .msg{font-size:.96rem;color:var(--carbon);margin:0;white-space:pre-line;line-height:1.55}
+  .copybox .cap{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--carbon-tenue);margin:0 0 8px}
+  .cbtn{flex:none;display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--dorado);color:var(--dorado);border-radius:999px;padding:7px 13px;font-family:var(--sans);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.15s}
+  .cbtn:hover{background:var(--dorado);color:#201a09}
+  .cbtn.done{background:var(--dorado);color:#201a09;border-color:var(--dorado)}
+  .cbtn svg{width:13px;height:13px;fill:currentColor}
+  .cbtn:focus-visible{outline:2px solid var(--dorado);outline-offset:2px}
+
+  /* tarjeta bienvenida visual */
+  .welcome{background:linear-gradient(150deg,var(--hueso),var(--panel));border:1px solid var(--linea);border-top:3px solid var(--dorado);border-radius:10px;padding:34px 28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:8px}
+  .welcome .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--dorado)}
+  .welcome .big{font-family:var(--display);font-size:clamp(1.5rem,4vw,2rem);color:var(--carbon);margin:0;text-wrap:balance}
+  .welcome p{font-family:var(--display);font-style:italic;font-size:1.1rem;color:var(--carbon-tenue);max-width:46ch;margin:0}
+  .welcome .firma{font-family:var(--sans);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--vino)}
+
+  footer{margin-top:clamp(48px,8vw,80px);text-align:center;color:var(--carbon-tenue);font-size:.78rem;border-top:1px solid var(--linea);padding-top:20px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--carbon);color:var(--arena);padding:10px 20px;border-radius:999px;font-size:.82rem;opacity:0;transition:.25s;pointer-events:none;z-index:50}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+<style>html,body{margin:0}*{box-sizing:border-box}img{max-width:100%}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <svg class="gem" viewBox="0 0 48 28" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.12"/><path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/><line x1="13" y1="9" x2="13" y2="19"/><line x1="35" y1="9" x2="35" y2="19"/><line x1="3" y1="14" x2="45" y2="14"/></g></svg>
+    <span class="wordmark">VELMORA</span>
+    <p class="sub">Manual de voz &amp; mensajes</p>
+    <div class="hr"></div>
+  </header>
+
+  <!-- 1. EL MUNDO -->
+  <section>
+    <p class="eyebrow">01 · El mundo VELMORA</p>
+    <h2>No vendemos joyas. Abrimos la puerta a un mundo.</h2>
+    <p class="lead">Cuando alguien compra en VELMORA no se lleva solo plata u oro: entra a un mundo donde cada detalle tiene valor y cada joya cuenta una historia. Ese sentimiento se construye con palabras propias.</p>
+    <div class="lex">
+      <div><b>El mundo VELMORA</b><p>La comunidad y la experiencia de marca.</p></div>
+      <div><b>Velmorita / Velmorito</b><p>El trato cercano con cada cliente.</p></div>
+      <div><b>Tu esencia, tu VELMORA</b><p>La conexión personal con la joya.</p></div>
+      <div><b>Un detalle que permanece</b><p>La promesa emocional de la marca.</p></div>
+      <div><b>Bienvenida a tu mundo</b><p>La frase para recibir a cada nueva clienta.</p></div>
+    </div>
+  </section>
+
+  <!-- 2. TONO -->
+  <section>
+    <p class="eyebrow">02 · Reglas de tono</p>
+    <h2>Cercana sin perder el lujo</h2>
+    <p class="lead">El cariño va en los momentos justos: redes, mensajes y empaque. En una factura o ficha de producto, tono sobrio. Lujo silencioso: refinada sin ser fría, cercana sin dejar de brillar.</p>
+    <div class="rules">
+      <div class="rule si">
+        <h4>Usa el trato cariñoso en</h4>
+        <ul>
+          <li>Mensajes de WhatsApp y respuestas.</li>
+          <li>Publicaciones e historias.</li>
+          <li>Tarjeta y mensaje que acompaña el pedido.</li>
+        </ul>
+      </div>
+      <div class="rule no">
+        <h4>Tono sobrio en</h4>
+        <ul>
+          <li>Facturas y datos de pago.</li>
+          <li>Fichas de producto del catálogo.</li>
+          <li>Políticas de envío, cambios y garantía.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. BANCO DE FRASES -->
+  <section>
+    <p class="eyebrow">03 · Banco de frases</p>
+    <h2>Una frase para cada joya</h2>
+    <p class="lead">Van impresas en la tarjeta o escritas en el mensaje de cada venta. Rota entre ellas para que cada pedido se sienta único. Toca “Copiar” para usarlas.</p>
+
+    <h3 class="grp">Línea <span>Plata 925</span></h3>
+    <div class="cards" data-group></div>
+
+    <h3 class="grp">Línea <span>Oro laminado</span></h3>
+    <div class="cards" data-group></div>
+
+    <h3 class="grp">Línea <span>Esmeralda</span></h3>
+    <div class="cards" data-group></div>
+
+    <h3 class="grp">Momentos especiales · <span>XV Años</span></h3>
+    <div class="cards" data-group></div>
+
+    <h3 class="grp">Marca · <span>transversal</span></h3>
+    <div class="cards" data-group></div>
+  </section>
+
+  <!-- 4. TARJETA -->
+  <section>
+    <p class="eyebrow">04 · Tarjeta de bienvenida</p>
+    <h2>El ritual que crea pertenencia</h2>
+    <p class="lead">Cada pedido llega con una pequeña tarjeta. Es el momento en que la clienta siente que entró a algo exclusivo. Este es el texto para imprimir (frente y reverso).</p>
+    <div class="welcome">
+      <span class="k">Frente</span>
+      <p class="big">Bienvenida al mundo VELMORA</p>
+      <span class="k" style="margin-top:8px">Reverso</span>
+      <p>Gracias, Velmorita, por elegirnos. Hoy no solo llevas una joya: llevas un pedacito de nuestro mundo. Que te acompañe en tus días especiales… y en los normales también.</p>
+      <span class="firma">Con cariño, VELMORA</span>
+    </div>
+    <div class="cards" style="margin-top:12px" data-group></div>
+  </section>
+
+  <!-- 5. MENSAJE DE CADA VENTA -->
+  <section>
+    <p class="eyebrow">05 · Mensaje con cada venta</p>
+    <h2>Lo que escribes al despachar</h2>
+    <p class="lead">Acompaña la guía de envío. Cálido, breve, con la frase de la línea que compró.</p>
+    <div class="cards" data-group></div>
+  </section>
+
+  <!-- 6. GUION WHATSAPP -->
+  <section>
+    <p class="eyebrow">06 · Guion de WhatsApp</p>
+    <h2>Del “hola” a la clienta feliz</h2>
+    <p class="lead">Plantillas listas para cada momento de la conversación. Personaliza lo que va [entre corchetes]. Toca “Copiar” y pega en el chat.</p>
+    <div class="cards" data-group></div>
+  </section>
+
+  <footer>VELMORA · Manual de voz v1 · Neiva, Huila 💛</footer>
+</div>
+
+<div class="toast" id="toast">Copiado ✨</div>
+
+<script>
+  var COPYICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>';
+
+  var DATA=[
+    // 0 plata
+    ["La plata no se oxida. Como las cosas que de verdad importan.",
+     "Plata ley 925: brilla distinto porque es de verdad.",
+     "La plata acompaña, no compite. Igual que quien de verdad te quiere."],
+    // 1 oro
+    ["El oro no te hace brillar. Solo acompaña lo que ya brillaba.",
+     "Un toque de oro para los días que merecen un poco más.",
+     "El oro combina con todo. Empezando por tu sonrisa."],
+    // 2 esmeralda
+    ["Un pedacito del verde de Colombia, hecho para ti.",
+     "Las esmeraldas no se usan: se heredan.",
+     "Verde esmeralda, el color de lo que no se olvida."],
+    // 3 xv
+    ["Hay fechas que merecen brillar para siempre.",
+     "Quince años, una sola vez. Que se note.",
+     "Tu historia apenas empieza, y ya brilla."],
+    // 4 marca
+    ["No esperes la ocasión. Tú ya eres la ocasión.",
+     "Hay joyas que llevas. Y hay joyas que se vuelven parte de ti.",
+     "Un detalle que permanece.",
+     "Joyas para tus días especiales… y para los normales también."],
+    // 5 tarjeta (copiable completa)
+    ["Bienvenida al mundo VELMORA.\n\nGracias, Velmorita, por elegirnos. Hoy no solo llevas una joya: llevas un pedacito de nuestro mundo. Que te acompañe en tus días especiales… y en los normales también.\n\nCon cariño, VELMORA 💛"],
+    // 6 mensaje de cada venta
+    ["Gracias, Velmorita, por elegirnos. ✨\nHoy no solo llevas una joya contigo; también un pedacito de nuestro mundo.\nBienvenida al mundo VELMORA, donde cada detalle tiene un significado.\nCon cariño, VELMORA 💛"]
+  ];
+
+  // tarjetas con caption
+  var WA=[
+    ["Saludo (cuando te escriben)","¡Hola! 💛 Bienvenida a VELMORA, soy [tu nombre]. Con gusto te ayudo ✨ ¿Cuál joyita te enamoró?"],
+    ["Responder el precio","Esa es [pieza] en [material] 😍 Queda en $[precio]. ¿Te la aparto, Velmorita?"],
+    ["Cómo separar / pagar","La puedes separar con el 50% y el resto contra entrega. Aceptamos Nequi, Daviplata y transferencia. ¿Te paso los datos?"],
+    ["Envíos","Enviamos a todo Colombia desde Neiva 📦 Llega en [2–4] días por [transportadora]. El envío es [valor / gratis desde $X]."],
+    ["Confirmar el pedido","¡Listo, quedó apartada! 🎉 Para despachar necesito: nombre completo, cédula, dirección, ciudad y celular. 💛"],
+    ["Al despachar (posventa)","Tu joya VELMORA ya va en camino 💛 Guía: [número]. Cualquier cosa aquí estoy. ¡Ya haces parte del mundo VELMORA! ✨"],
+    ["Seguimiento (días después)","Hola, Velmorita 💛 ¿Cómo te sentiste con tu [pieza]? Si te animas a mandarnos una foto o una reseñita, nos ayudas muchísimo a seguir creciendo ✨"],
+    ["Recuperar (no respondió)","Te guardé la [pieza] por si todavía la quieres 💛 ¿La aparto, Velmorita?"]
+  ];
+
+  function copyText(t,btn){
+    function ok(){ btn.classList.add('done'); btn.querySelector('span').textContent='Copiado'; showToast();
+      setTimeout(function(){btn.classList.remove('done'); btn.querySelector('span').textContent='Copiar';},1400); }
+    try{
+      navigator.clipboard.writeText(t).then(ok,function(){ fallback(t); ok(); });
+    }catch(e){ fallback(t); ok(); }
+  }
+  function fallback(t){
+    try{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){}
+  }
+  var toastT;
+  function showToast(){var el=document.getElementById('toast');el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){el.classList.remove('show');},1300);}
+
+  function mkBox(text,isFrase,cap){
+    var box=document.createElement('div'); box.className='copybox';
+    var txt=document.createElement('div'); txt.className='txt';
+    if(cap){var c=document.createElement('p');c.className='cap';c.textContent=cap;txt.appendChild(c);}
+    var p=document.createElement('p'); p.className=isFrase?'frase':'msg'; p.textContent=text; txt.appendChild(p);
+    var btn=document.createElement('button'); btn.className='cbtn'; btn.innerHTML=COPYICON+'<span>Copiar</span>';
+    btn.addEventListener('click',function(){copyText(text,btn);});
+    box.appendChild(txt); box.appendChild(btn); return box;
+  }
+
+  var groups=document.querySelectorAll('[data-group]');
+  // 0-4 frases, 5 tarjeta, 6 mensaje venta, 7 guion WA
+  [0,1,2,3,4].forEach(function(gi){ DATA[gi].forEach(function(f){ groups[gi].appendChild(mkBox(f,true)); }); });
+  DATA[5].forEach(function(f){ groups[5].appendChild(mkBox(f,false,"Texto completo para copiar")); });
+  DATA[6].forEach(function(f){ groups[6].appendChild(mkBox(f,false,"Mensaje posventa")); });
+  WA.forEach(function(w){ groups[7].appendChild(mkBox(w[1],false,w[0])); });
+</script>
+</body>
+</html>

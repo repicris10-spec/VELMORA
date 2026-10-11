@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Identidad VELMORA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+  /* Layout: tablero de marca de una columna, centrado, con secciones separadas por aire cálido */
+  :root{
+    --arena:#FAFAF8;      /* fondo general, blanco limpio */
+    --hueso:#FFFFFF;      /* tarjetas, blanco puro */
+    --beige:#F1F1EF;      /* panel neutro, uso puntual */
+    --linea:#E7E6E2;      /* bordes finos */
+    --plata:#8C9299;      /* plata, acento frío */
+    --plata-clara:#C4C8CC;/* plata clara */
+    --rosa:#C08D7F;       /* oro rosa, toque cálido de marca */
+    --rosa-suave:#D9B6AB; /* oro rosa claro */
+    --vino:#5A5E63;       /* grafito, textos de acento */
+    --dorado:#C09A3C;     /* oro, acento protagonista */
+    --dorado-claro:#E3CD92;/* oro champaña */
+    --carbon:#26262A;     /* texto principal, grafito */
+    --carbon-tenue:#6C6E73;/* texto secundario */
+    --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    --sans:"Jost","Century Gothic",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --arena:#141518; --hueso:#1E2023; --beige:#24262A; --linea:#34373C;
+    --plata:#C9CDD3; --plata-clara:#E2E5E9; --rosa:#D4A99C; --rosa-suave:#E3C3B8;
+    --vino:#AEB2B8; --dorado:#E3C878; --dorado-claro:#F0DCA6;
+    --carbon:#F4F4F3; --carbon-tenue:#AFB2B7; color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --arena:#141518; --hueso:#1E2023; --beige:#24262A; --linea:#34373C;
+    --plata:#C9CDD3; --plata-clara:#E2E5E9; --rosa:#D4A99C; --rosa-suave:#E3C3B8;
+    --vino:#AEB2B8; --dorado:#E3C878; --dorado-claro:#F0DCA6;
+    --carbon:#F4F4F3; --carbon-tenue:#AFB2B7; color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--arena);color:var(--carbon);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding-inline:24px;padding-block:clamp(48px,8vw,96px)}
+
+  .eyebrow{font-family:var(--sans);font-size:.72rem;font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:var(--rosa);margin:0}
+  h2{font-family:var(--display);font-weight:500;font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.1;margin:.2em 0 .1em;text-wrap:balance}
+  .lead{font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--carbon-tenue);max-width:60ch;margin:0}
+
+  section{margin-top:clamp(56px,9vw,104px)}
+  .divider{height:1px;background:var(--linea);border:0;margin:0}
+
+  /* ---------- HERO ---------- */
+  .hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px}
+  .gem{color:var(--dorado);width:52px;height:auto;display:block}
+  .gem--sm{width:30px}
+  .wordmark{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.42em;line-height:1;color:var(--carbon)}
+  .hero .wordmark{font-size:clamp(2.1rem,9vw,5rem);letter-spacing:.2em;margin-left:.2em;max-width:100%}
+  .subline{font-family:var(--sans);font-size:.78rem;letter-spacing:.46em;text-transform:uppercase;color:var(--dorado);margin:0}
+  .slogan{font-family:var(--display);font-style:italic;font-size:clamp(1.3rem,3.4vw,1.75rem);color:var(--vino);max-width:30ch;margin:8px 0 0;text-wrap:balance}
+  .hr-rule{display:flex;align-items:center;gap:16px;color:var(--dorado);width:min(420px,80%)}
+  .hr-rule::before,.hr-rule::after{content:"";flex:1;height:1px;background:currentColor}
+
+  /* ---------- LOGOS ---------- */
+  .logo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:36px}
+  .logo-card{background:var(--hueso);border:1px solid var(--linea);border-radius:4px;padding:44px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;min-height:220px}
+  .logo-card.dark{background:#1A1C1F;border-color:#34373C}
+  .logo-card.dark .wordmark{color:#F4F4F3}
+  .logo-card.dark .gem{color:#E3C878}
+  .logo-card.dark .subline{color:#E3C878}
+  .logo-card .wordmark{font-size:1.5rem;letter-spacing:.2em;margin-left:.2em}
+  .card-tag{font-family:var(--sans);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--carbon-tenue);margin:0}
+  .logo-card.dark .card-tag{color:#9A9DA2}
+
+  /* monograma */
+  .monogram{width:132px;height:132px;border-radius:50%;border:1.5px solid var(--plata);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;position:relative;background:transparent}
+  .monogram .z{font-family:var(--display);font-size:3.6rem;font-weight:500;color:var(--carbon);line-height:.8}
+  .monogram .dot{color:var(--dorado);width:20px}
+  .mono-full{display:flex;flex-direction:column;align-items:center;gap:16px}
+
+  /* ---------- PALETA ---------- */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:36px}
+  .swatch{border:1px solid var(--linea);border-radius:4px;overflow:hidden;background:var(--hueso)}
+  .chip{height:92px}
+  .swatch-info{padding:14px 16px}
+  .swatch-info .nm{font-family:var(--sans);font-weight:400;font-size:.9rem;color:var(--carbon);margin:0}
+  .swatch-info .cd{font-family:var(--sans);font-size:.74rem;letter-spacing:.04em;color:var(--carbon-tenue);margin:4px 0 0;font-variant-numeric:tabular-nums}
+  .swatch-info .use{font-size:.74rem;color:var(--carbon-tenue);margin:8px 0 0;font-style:italic;font-family:var(--display)}
+
+  /* ---------- TIPOGRAFÍA ---------- */
+  .type-block{background:var(--hueso);border:1px solid var(--linea);border-radius:4px;padding:clamp(24px,4vw,40px);margin-top:20px}
+  .type-label{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;border-bottom:1px solid var(--linea);padding-bottom:14px;margin-bottom:20px}
+  .type-label .role{font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--rosa)}
+  .type-label .fam{font-family:var(--sans);font-size:.82rem;color:var(--carbon-tenue)}
+  .spec-display{font-family:var(--display);font-weight:500;font-size:clamp(2.4rem,7vw,4rem);line-height:1;margin:0;color:var(--carbon)}
+  .spec-set{font-family:var(--display);font-size:1.5rem;letter-spacing:.06em;color:var(--carbon-tenue);margin:14px 0 0}
+  .spec-sans{font-family:var(--sans);font-weight:400;font-size:1.05rem;letter-spacing:.02em;margin:0;color:var(--carbon)}
+  .spec-sans .caps{display:block;font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rosa);margin-top:14px}
+
+  /* ---------- VOZ ---------- */
+  .voz{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:36px}
+  .quote{background:var(--hueso);border:1px solid var(--linea);border-top:2px solid var(--dorado);border-radius:4px;padding:30px 30px 32px;display:flex;flex-direction:column;gap:14px}
+  .quote .gem{width:26px}
+  .quote p{font-family:var(--display);font-style:italic;font-size:1.3rem;line-height:1.4;color:var(--carbon);margin:0;text-wrap:balance}
+  .quote .src{font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--vino);margin:0}
+
+  /* ---------- APLICACIONES ---------- */
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:36px}
+  .app{background:var(--hueso);border:1px solid var(--linea);border-radius:4px;padding:28px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+  .app .cap{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--carbon-tenue);margin:0}
+  .avatar{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#C6CACE 0%,#ECECEE 46%,#D8B65C 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+  .avatar .z{font-family:var(--display);font-size:3rem;color:#2B2B2E;font-weight:500;line-height:.8}
+  .avatar .gem{color:#2B2B2E;width:18px}
+  .card-sample{width:100%;max-width:220px;aspect-ratio:3/2;background:var(--hueso);border:1px solid var(--dorado);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px}
+  .card-sample .wordmark{font-size:1.1rem;letter-spacing:.3em;margin-left:.3em}
+  .card-sample .mini{font-family:var(--display);font-style:italic;font-size:.82rem;color:var(--vino);text-align:center;margin:0}
+  .watermark{width:100%;max-width:220px;aspect-ratio:3/2;border:1px solid var(--linea);border-radius:4px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--hueso),var(--beige))}
+  .watermark .wordmark{font-size:1rem;letter-spacing:.3em;color:var(--dorado);opacity:.95;margin-left:.3em}
+
+  /* ---------- notas ---------- */
+  .notes{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:560px){.notes{grid-template-columns:1fr}}
+  .note{border-left:2px solid var(--rosa);padding:4px 0 4px 18px}
+  .note h4{font-family:var(--sans);font-weight:500;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin:0 0 8px;color:var(--carbon)}
+  .note ul{margin:0;padding-left:18px}
+  .note li{font-size:.92rem;color:var(--carbon-tenue);margin-bottom:6px}
+  .note .ok{color:var(--carbon)}
+
+  footer{margin-top:clamp(56px,9vw,96px);text-align:center;color:var(--carbon-tenue);font-size:.78rem;letter-spacing:.04em}
+</style>
+<style>html,body{margin:0}*{box-sizing:border-box}img{max-width:100%}</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <p class="eyebrow">Identidad de marca · 2026</p>
+    <svg class="gem" viewBox="0 0 48 28" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round">
+        <path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.12"/>
+        <path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/>
+        <line x1="13" y1="9" x2="13" y2="19"/><line x1="35" y1="9" x2="35" y2="19"/>
+        <line x1="3" y1="14" x2="45" y2="14"/>
+        <line x1="13" y1="9" x2="3" y2="14"/><line x1="35" y1="9" x2="45" y2="14"/>
+        <line x1="13" y1="19" x2="3" y2="14"/><line x1="35" y1="19" x2="45" y2="14"/>
+      </g>
+    </svg>
+    <h1 class="wordmark">VELMORA</h1>
+    <p class="subline">Plata &amp; Oro · Neiva</p>
+    <div class="hr-rule"></div>
+    <p class="slogan">Joyas para tus días especiales, y para los normales también.</p>
+  </header>
+
+  <!-- ===== LOGOTIPO ===== -->
+  <section>
+    <p class="eyebrow">01 · Logotipo</p>
+    <h2>El sello VELMORA</h2>
+    <p class="lead">Una serif de alto contraste con amplio interletrado transmite joyería fina sin perder calidez. La gema marquise reemplaza cualquier adorno: es el único símbolo de la marca.</p>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <svg class="gem gem--sm" viewBox="0 0 48 28" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.12"/><path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/><line x1="13" y1="9" x2="13" y2="19"/><line x1="35" y1="9" x2="35" y2="19"/><line x1="3" y1="14" x2="45" y2="14"/></g></svg>
+        <span class="wordmark">VELMORA</span>
+        <p class="card-tag">Principal · vertical</p>
+      </div>
+      <div class="logo-card">
+        <div class="mono-full">
+          <div class="monogram">
+            <span class="z">V</span>
+            <svg class="gem dot" viewBox="0 0 48 28" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.18"/><path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/></g></svg>
+          </div>
+          <p class="card-tag">Monograma · avatar</p>
+        </div>
+      </div>
+      <div class="logo-card dark">
+        <svg class="gem gem--sm" viewBox="0 0 48 28" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.15"/><path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/><line x1="13" y1="9" x2="13" y2="19"/><line x1="35" y1="9" x2="35" y2="19"/><line x1="3" y1="14" x2="45" y2="14"/></g></svg>
+        <span class="wordmark">VELMORA</span>
+        <p class="card-tag">Fondo oscuro</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PALETA ===== -->
+  <section>
+    <p class="eyebrow">02 · Paleta</p>
+    <h2>Blanco, plata y oro</h2>
+    <p class="lead">El blanco manda: es el 80% de cada pieza y hace resaltar la joya. Los dos metales de la marca —plata y oro— son los acentos que dicen qué vendes. El oro rosa queda como guiño cálido y el grafito para los textos.</p>
+    <div class="swatches">
+      <div class="swatch"><div class="chip" style="background:#8C9299"></div><div class="swatch-info"><p class="nm">Plata</p><p class="cd">#8C9299 · rgb 140 146 153</p><p class="use">Línea plata, acentos fríos</p></div></div>
+      <div class="swatch"><div class="chip" style="background:#C4C8CC"></div><div class="swatch-info"><p class="nm">Plata clara</p><p class="cd">#C4C8CC · rgb 196 200 204</p><p class="use">Filetes y detalles plata</p></div></div>
+      <div class="swatch"><div class="chip" style="background:#C09A3C"></div><div class="swatch-info"><p class="nm">Oro</p><p class="cd">#C09A3C · rgb 192 154 60</p><p class="use">Línea oro, acento protagonista</p></div></div>
+      <div class="swatch"><div class="chip" style="background:#E3CD92"></div><div class="swatch-info"><p class="nm">Oro champaña</p><p class="cd">#E3CD92 · rgb 227 205 146</p><p class="use">Oro laminado, degradados</p></div></div>
+      <div class="swatch"><div class="chip" style="background:#C08D7F"></div><div class="swatch-info"><p class="nm">Oro rosa</p><p class="cd">#C08D7F · rgb 192 141 127</p><p class="use">Toque cálido de marca</p></div></div>
+      <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #E7E6E2"></div><div class="swatch-info"><p class="nm">Blanco hueso</p><p class="cd">#FFFFFF · rgb 255 255 255</p><p class="use">Base de fotos de producto</p></div></div>
+      <div class="swatch"><div class="chip" style="background:#FAFAF8;border-bottom:1px solid #E7E6E2"></div><div class="swatch-info"><p class="nm">Blanco cálido</p><p class="cd">#FAFAF8 · rgb 250 250 248</p><p class="use">Fondo general</p></div></div>
+      <div class="swatch"><div class="chip" style="background:#26262A"></div><div class="swatch-info"><p class="nm">Grafito</p><p class="cd">#26262A · rgb 38 38 42</p><p class="use">Texto principal</p></div></div>
+    </div>
+  </section>
+
+  <!-- ===== TIPOGRAFÍA ===== -->
+  <section>
+    <p class="eyebrow">03 · Tipografía</p>
+    <h2>Dos voces, un carácter</h2>
+    <p class="lead">Cormorant Garamond para titulares y la palabra VELMORA: fina, con estilo de alta joyería. Jost para precios, botones y textos de redes: geométrica, limpia, legible en pantalla pequeña.</p>
+
+    <div class="type-block">
+      <div class="type-label"><span class="role">Display</span><span class="fam">Cormorant Garamond · Medium / Italic</span></div>
+      <p class="spec-display">Aa Zz 0123</p>
+      <p class="spec-set">Elegancia que se lleva todos los días</p>
+    </div>
+
+    <div class="type-block">
+      <div class="type-label"><span class="role">Texto &amp; datos</span><span class="fam">Jost · Light / Regular / Medium</span></div>
+      <p class="spec-sans">Dije corazón en plata 925 · cadena 45 cm · $68.000. Envíos a todo el país desde Neiva. Separa con el 50%.<span class="caps">Plata · Oro laminado · Neiva</span></p>
+    </div>
+  </section>
+
+  <!-- ===== VOZ / MENSAJES ===== -->
+  <section>
+    <p class="eyebrow">04 · Voz &amp; mensaje con cada venta</p>
+    <h2>Lo que va en cada tarjeta</h2>
+    <p class="lead">Cada pedido se despacha con una frase breve que eleva el objeto y da la bienvenida al <strong>mundo VELMORA</strong>. A las clientas les hablamos con cariño: <em>Velmorita</em> y <em>Velmorito</em>. Tono cálido, cercano, nunca cursi.</p>
+    <div class="voz">
+      <div class="quote" style="border-top-color:var(--plata)">
+        <svg class="gem" viewBox="0 0 48 28" aria-hidden="true" style="color:var(--plata)"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.15"/><path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/></g></svg>
+        <p>La plata no se oxida. Como las cosas que de verdad importan.</p>
+        <p class="src" style="color:var(--plata)">Línea plata</p>
+      </div>
+      <div class="quote">
+        <svg class="gem" viewBox="0 0 48 28" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.15"/><path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/></g></svg>
+        <p>El oro no te hace brillar. Solo acompaña lo que ya brillaba.</p>
+        <p class="src">Línea oro laminado</p>
+      </div>
+      <div class="quote">
+        <svg class="gem" viewBox="0 0 48 28" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.15"/><path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/></g></svg>
+        <p>No esperes la ocasión. Tú ya eres la ocasión.</p>
+        <p class="src">Marca · transversal</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APLICACIONES ===== -->
+  <section>
+    <p class="eyebrow">05 · Aplicaciones</p>
+    <h2>La marca en uso</h2>
+    <p class="lead">Así se ve el sistema aplicado: foto de perfil para redes, tarjeta que acompaña el pedido y marca de agua para las fotos de producto.</p>
+    <div class="apps">
+      <div class="app">
+        <div class="avatar">
+          <span class="z">V</span>
+          <svg class="gem" viewBox="0 0 48 28" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 14 C12 5 36 5 45 14 C36 23 12 23 3 14 Z" fill="currentColor" fill-opacity="0.2"/><path d="M3 14 L13 9 L35 9 L45 14 L35 19 L13 19 Z"/></g></svg>
+        </div>
+        <p class="cap">Foto de perfil</p>
+      </div>
+      <div class="app">
+        <div class="card-sample">
+          <span class="wordmark">VELMORA</span>
+          <p class="mini">Bienvenida al<br>mundo VELMORA.</p>
+        </div>
+        <p class="cap">Tarjeta de pedido</p>
+      </div>
+      <div class="app">
+        <div class="watermark"><span class="wordmark">VELMORA</span></div>
+        <p class="cap">Marca de agua en fotos</p>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <h4>Sí</h4>
+        <ul>
+          <li class="ok">Dar aire: fondo beige/hueso alrededor del logo.</li>
+          <li class="ok">Fotos de producto sobre hueso o lino claro.</li>
+          <li class="ok">Oro rosa solo como acento y detalles.</li>
+          <li class="ok">Mantener el interletrado amplio en “VELMORA”.</li>
+        </ul>
+      </div>
+      <div class="note">
+        <h4>No</h4>
+        <ul>
+          <li>Rellenar fondos enteros de oro rosa.</li>
+          <li>Deformar o inclinar el logotipo.</li>
+          <li>Usar fuentes distintas a Cormorant y Jost.</li>
+          <li>Fondos recargados que compitan con la joya.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    VELMORA · Plata &amp; Oro laminado · Neiva, Huila — sistema de marca v1
+  </footer>
+
+</div>
+</body>
+</html>
